@@ -6,9 +6,9 @@ A take-home submission for the Naxape MERN Stack Developer Intern position. A sm
 
 | Layer | Provider | URL / Endpoint |
 |---|---|---|
-| **Frontend** | Vercel | https://nexape-web.vercel.app |
-| **Backend API** | Vercel (serverless function) | https://nexape-server.vercel.app |
-| **Health probe** | Vercel | https://nexape-server.vercel.app/health |
+| **Frontend** | Vercel | https://nexape-y1hu.vercel.app |
+| **Backend API** | Vercel (serverless function) | https://nexape.vercel.app |
+| **Health probe** | Vercel | https://nexape.vercel.app/health |
 | **Database** | Neon (Postgres) | `ep-restless-truth-aomcggb4-pooler.c-2.ap-southeast-1.aws.neon.tech` (private — pooled endpoint, accessed via Neon's serverless driver) |
 
 Both apps deployed on **Vercel**. The database is **Neon serverless Postgres** in `ap-southeast-1`, connected via `@prisma/adapter-neon` over HTTP/WebSocket — no engine binary, no TCP pool, fast cold starts.
@@ -155,7 +155,7 @@ Both apps are deployed as **two separate Vercel projects** pointing at the same 
 | Root Directory | `web` |
 | Framework Preset | Vite (auto-detected) |
 | Build / Install / Output | Default |
-| Env var | `VITE_API_URL` = `https://nexape-server.vercel.app` |
+| Env var | `VITE_API_URL` = `https://nexape.vercel.app` |
 
 [web/vercel.json](web/vercel.json) handles SPA fallback so all client routes resolve to `index.html`.
 
@@ -173,7 +173,7 @@ Env vars (all Production, marked Sensitive):
 |---|---|
 | `DATABASE_URL` | Neon **pooled** connection URL |
 | `JWT_SECRET` | 32-byte random hex |
-| `WEB_ORIGIN` | `https://nexape-web.vercel.app` |
+| `WEB_ORIGIN` | `https://nexape-y1hu.vercel.app` |
 | `NODE_ENV` | `production` |
 
 The Express app is wrapped as a Vercel serverless function via [server/api/index.ts](server/api/index.ts) and routed by [server/vercel.json](server/vercel.json). Cold starts stay fast because the Neon serverless driver opens connections over HTTP/WebSocket — no engine binary, no TCP pool.
@@ -251,7 +251,7 @@ No Redux, no Context-as-state, no monolithic store. Each tool fits its scope.
 5. Filter by status → same behavior.
 6. Delete a lead → row disappears immediately; total decrements.
 7. Try registering the same email twice → 409 with a field-level error rendered next to the email input.
-8. `curl https://nexape-server.vercel.app/api/leads` (no token) → 401.
+8. `curl https://nexape.vercel.app/api/leads` (no token) → 401.
 
 ## Submission
 
