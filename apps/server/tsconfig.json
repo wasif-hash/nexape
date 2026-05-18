@@ -8,9 +8,9 @@
     "skipLibCheck": true,
     "forceConsistentCasingInFileNames": true,
     "resolveJsonModule": true,
-    "rootDir": ".",
+    "rootDir": "src",
     "outDir": "dist",
     "types": ["node"]
   },
-  "include": ["src", "api"]
+  "include": ["src"]
 }
